@@ -1,2 +1,2 @@
 # techdegree-project-6
-Browser version of "Wheel of Success" game 
+Game Show App - Browser version of "Wheel of Success" game 
