@@ -10,11 +10,17 @@ const missed = 0;
 const startGame = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 
-// Start Game Init
-startGame.addEventListener('click', (e) => {
+const phrases = 
+    [ 
+    'If you spend too much time thinking about a thing, you\'ll never get it done.', 
+    'Do not pray for an easy life, pray for the strength to endure a difficult one', 
+    'I fear not the man who has practices 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.', 
+    'Real living is living for others.', 
+    'The successful warrior is the average man, with laser-like focus.'  
+    ]
 
+// Start Game
+startGame.addEventListener('click', () => {
     // Hide the start screen overlay 
     startOverlay.style.display = 'none';
-    
-
 });
