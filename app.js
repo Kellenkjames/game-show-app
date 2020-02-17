@@ -6,6 +6,8 @@ const missed = 0;
 const startGame = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 
+let newCharacters;
+
 const phrases = 
     [ 
     'If you spend too much time thinking about a thing, you\'ll never get it done.', 
@@ -24,13 +26,15 @@ function getRandomPhraseAsArray(arr) {
     // Randomly choose a phrase from the phrases array 
     return phrases[Math.floor(Math.random() * phrases.length)];
 }
-getRandomPhraseAsArray(phrases).split();
 // Split that phrase into a new array of characters
-console.log(getRandomPhraseAsArray(phrases).split());
+newCharacters = getRandomPhraseAsArray(phrases).split();
+console.log(newCharacters);
+
 
 
 function addPhraseToDisplay(arr) {
     // do stuff any arr that is passed in, and add to `#phrase ul`
+    
 
 }
 
