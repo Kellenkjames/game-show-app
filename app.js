@@ -7,11 +7,14 @@ const qwerty = document.querySelector('qwerty');
 const phrase = document.querySelector('phrase');
 
 const missed = 0;
-const startGame = document.querySelector('btn__reset');
+const startGame = document.querySelector('.btn__reset');
+const startOverlay = document.querySelector('#overlay');
 
+// Start Game Init
 startGame.addEventListener('click', (e) => {
 
-    // Hide the start screen overlay
-
+    // Hide the start screen overlay 
+    startOverlay.style.display = 'none';
+    
 
 });
