@@ -1,6 +1,6 @@
 // Globals
-const qwerty = document.querySelector('qwerty');
-const phrase = document.querySelector('phrase');
+const qwerty = document.querySelector('.qwerty');
+const phrase = document.querySelector('.phrase');
 
 const missed = 0;
 const startGame = document.querySelector('.btn__reset');
@@ -15,18 +15,22 @@ const phrases =
     'The successful warrior is the average man, with laser-like focus.'  
     ]
 
-const newCharacters = [];
-
-startGame.addEventListener('click', () => {
+    startGame.addEventListener('click', () => {
     // Hide the start screen overlay 
     startOverlay.style.display = 'none';
 });
 
-
 function getRandomPhraseAsArray(arr) {
-    // do stuff to any arr that is passed in
-    const randomItem = phrases[Math.floor(Math.random() * phrases.length)];
-    console.log(randomItem);
+    // Randomly choose a phrase from the phrases array 
+    return phrases[Math.floor(Math.random() * phrases.length)];
 }
-getRandomPhraseAsArray(phrases);
+getRandomPhraseAsArray(phrases).split();
+// Split that phrase into a new array of characters
+console.log(getRandomPhraseAsArray(phrases).split());
+
+
+function addPhraseToDisplay(arr) {
+    // do stuff any arr that is passed in, and add to `#phrase ul`
+
+}
 
