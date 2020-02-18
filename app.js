@@ -23,33 +23,26 @@ function getRandomPhraseAsArray(arr) {
     // Randomly choose a phrase from the phrases array 
     return phrases[Math.floor(Math.random() * phrases.length)];
 }
-// Split that phrase into a new array of characters
-const newCharacters = getRandomPhraseAsArray(phrases).split("");
 
-/* 
-1. Create an addPhraseToDisplay function that loops through an array of characters.
-2. Inside the loop, for each character in the array, you’ll create a list item.
-3. Put the character inside of the list item.
-4. Append that list item to the #phrase ul in your HTML.
-*/ 
+// Get value returned by the getRandomPhraseAsArray and split into new array 
+const phraseArray = getRandomPhraseAsArray(phrases).split("");
 
 function addPhraseToDisplay(arr) {
     // do stuff any arr that is passed in, and add to `#phrase ul`
-    for (let i = 0; i < newCharacters.length; i++) {
-        if (newCharacters.length > 0) {
-            console.log(newCharacters[i]);
-            let text = newCharacters[i];
+    for (let i = 0; i < phraseArray.length; i++) {
+        if (phraseArray.length > 0) {
+            console.log(phraseArray[i]);
+            let text = phraseArray[i];
             const ul = document.getElementById('phrase');
             const li = document.createElement('li');
             li.textContent = text;
             ul.appendChild(li);
-            if (newCharacters[i].trim()) {
+            if (phraseArray[i].trim()) {
                 // is a letter
                 li.classList.add('letter');
             } 
         }
     }
 }
-addPhraseToDisplay();
-
+addPhraseToDisplay(phraseArray); 
 
