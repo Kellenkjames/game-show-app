@@ -55,7 +55,6 @@ addPhraseToDisplay(phraseArray);
 5. If there’s a match, the function should add the “show” class to the list item containing that letter, store the matching letter inside of a variable, and return that letter.
 
 6. If a match wasn’t found, the function should return null.
-
 */
 
 function checkLetter(button) {
@@ -63,9 +62,11 @@ function checkLetter(button) {
     const letter = document.getElementsByClassName('letter');
 
     // Loop through collection of elements since we have a nodeList 
-    for (let i = 0; i < letter.length, i++;) {
-        console.log(letter[i]);
-    }
+    Array.from(letter).forEach((element) => {
+        // Do stuff here
+        console.log(element);
+    });
+    
 }
 
 checkLetter();
