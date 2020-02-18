@@ -31,7 +31,6 @@ function addPhraseToDisplay(arr) {
     // do stuff any arr that is passed in, and add to `#phrase ul`
     for (let i = 0; i < phraseArray.length; i++) {
         if (phraseArray.length > 0) {
-            console.log(phraseArray[i]);
             let text = phraseArray[i];
             const ul = document.getElementById('phrase');
             const li = document.createElement('li');
@@ -45,4 +44,29 @@ function addPhraseToDisplay(arr) {
     }
 }
 addPhraseToDisplay(phraseArray); 
+
+/* 
+1. The checkLetter function will be used inside of the event listener you’ll write in the next step.
+
+2. This function should have one parameter: the button the player has clicked when guessing a letter.
+
+3. The checkLetter function should get all of the elements with a class of “letter” (remember that we added the letter class to all of the letters and none of the spaces when we made the game display). The function should loop over the letters and check if they match the letter in the button the player has chosen.
+
+5. If there’s a match, the function should add the “show” class to the list item containing that letter, store the matching letter inside of a variable, and return that letter.
+
+6. If a match wasn’t found, the function should return null.
+
+*/
+
+function checkLetter(button) {
+    // Get all of the elements with a class of “letter” 
+    const letter = document.getElementsByClassName('letter');
+
+    // Loop through collection of elements since we have a nodeList 
+    for (let i = 0; i < letter.length, i++;) {
+        console.log(letter[i]);
+    }
+}
+
+checkLetter();
 
