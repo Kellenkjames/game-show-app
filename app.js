@@ -45,23 +45,23 @@ function addPhraseToDisplay(arr) {
 }
 addPhraseToDisplay(phraseArray); 
 
-function checkLetter(buttonClick) {
+function checkLetter(buttonChosen) {
     // Get all of the elements with a class of “letter” 
     const letter = document.getElementsByClassName('letter');
 
     // Loop through collection of elements since we have a nodeList 
-    Array.from(letter).forEach((element) => {
+    Array.from(letter).forEach((el) => {
         // Do stuff here
-        console.log(element);
+        console.log(el);
         // Check if there is a match with the button that was clicked 
-        if (element === buttonClick) {
-            element.classList.add('show');
+        if (el === buttonChosen) {
+            // Store matching letter
+            const matchLetter = el;
+            return matchLetter.classList.add('show');
         } else {
             return null;
         }
-    });
-    
+    }); 
 }
-
 checkLetter();
 
