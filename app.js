@@ -1,5 +1,5 @@
 // Globals
-const qwerty = document.querySelector('.qwerty');
+const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('.phrase');
 
 const missed = 0;
@@ -19,7 +19,7 @@ startGame.addEventListener('click', () => {
     startOverlay.style.display = 'none';
 });
 
-function getRandomPhraseAsArray(arr) {
+const getRandomPhraseAsArray = arr => {
     // Randomly choose a phrase from the phrases array 
     return phrases[Math.floor(Math.random() * phrases.length)];
 }
@@ -27,7 +27,7 @@ function getRandomPhraseAsArray(arr) {
 // Get value returned by the getRandomPhraseAsArray and split into new array 
 const phraseArray = getRandomPhraseAsArray(phrases).split("");
 
-function addPhraseToDisplay(arr) {
+const addPhraseToDisplay = arr => {
     // do stuff any arr that is passed in, and add to `#phrase ul`
     for (let i = 0; i < phraseArray.length; i++) {
         if (phraseArray.length > 0) {
@@ -43,18 +43,18 @@ function addPhraseToDisplay(arr) {
         }
     }
 }
+// Pass new split array as argument
 addPhraseToDisplay(phraseArray); 
 
-function checkLetter(buttonChosen) {
+const checkLetter = button => {
     // Get all of the elements with a class of “letter” 
     const letter = document.getElementsByClassName('letter');
 
     // Loop through collection of elements since we have a nodeList 
     Array.from(letter).forEach((el) => {
-        // Do stuff here
-        console.log(el);
+        // console.log(el);
         // Check if there is a match with the button that was clicked 
-        if (el === buttonChosen) {
+        if (el === button) {
             // Store matching letter
             const matchLetter = el;
             return matchLetter.classList.add('show');
@@ -64,4 +64,16 @@ function checkLetter(buttonChosen) {
     }); 
 }
 checkLetter();
+
+/* Add an event listener to the keyboard */
+qwerty.addEventListener('click', (e) => {
+    const letterChosen = e.target.textContent;
+    const button = e.target;
+    console.log(button);
+    // If letter is chosen, add class of chosen so the same letter can't be added 2x and disable the button.  
+    if (letterChosen.length > 0) {
+        button.classList.add('chosen');
+        button.disabled = true;
+    }
+});
 
