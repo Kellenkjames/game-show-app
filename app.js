@@ -7,11 +7,11 @@ const startGame = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 const phrases = 
 [ 
-    'If you spend too much time thinking about a thing, you\'ll never get it done.', 
-    'Do not pray for an easy life, pray for the strength to endure a difficult one.', 
-    'I fear not the man who has practices 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.', 
-    'Real living is living for others.', 
-    'The successful warrior is the average man, with laser-like focus.'  
+    'If you spend too much time thinking about a thing, you\'ll never get it done', 
+    'Do not pray for an easy life, pray for the strength to endure a difficult one', 
+    'I fear not the man who has practices 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times', 
+    'Real living is living for others', 
+    'The successful warrior is the average man, with laser-like focus'  
 ]
 
 startGame.addEventListener('click', () => {
@@ -57,7 +57,7 @@ addPhraseToDisplay(phraseArray);
 6. If a match wasn’t found, the function should return null.
 */
 
-function checkLetter(button) {
+function checkLetter(buttonClick) {
     // Get all of the elements with a class of “letter” 
     const letter = document.getElementsByClassName('letter');
 
@@ -65,6 +65,10 @@ function checkLetter(button) {
     Array.from(letter).forEach((element) => {
         // Do stuff here
         console.log(element);
+        // Check if there is a match with the button that was clicked 
+        if (element === buttonClick) {
+            element.add.classList('show');
+        }
     });
     
 }
