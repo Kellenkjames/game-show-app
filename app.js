@@ -21,12 +21,16 @@ startGame.addEventListener('click', () => {
 
 const getRandomPhraseAsArray = arr => {
     // Randomly choose a phrase from the phrases array 
-    return phrases[Math.floor(Math.random() * phrases.length)];
+    return phrases[Math.floor(Math.random() * phrases.length)].toLowerCase().split("");
 }
 
-// Get value returned by the getRandomPhraseAsArray and split into new array 
-const phraseArray = getRandomPhraseAsArray(phrases).split("");
+// Call the function and pass phrases array to it
+getRandomPhraseAsArray(phrases);
 
+// Value returned by getRandomPhraseAsArray
+const phraseArray = getRandomPhraseAsArray(phrases);
+
+// Game Display - Loop through array of characters and add class of letter
 const addPhraseToDisplay = arr => {
     // do stuff any arr that is passed in, and add to `#phrase ul`
     for (let i = 0; i < phraseArray.length; i++) {
@@ -37,7 +41,7 @@ const addPhraseToDisplay = arr => {
             li.textContent = text;
             ul.appendChild(li);
             if (phraseArray[i].trim()) {
-                // is a letter
+                // is a letter and not a space
                 li.classList.add('letter');
             } 
         }
@@ -46,34 +50,65 @@ const addPhraseToDisplay = arr => {
 // Pass new split array as argument
 addPhraseToDisplay(phraseArray); 
 
+// Will be used in the event listener to check against button
 const checkLetter = button => {
+    
     // Get all of the elements with a class of “letter” 
-    const letter = document.getElementsByClassName('letter');
-
-    // Loop through collection of elements since we have a nodeList 
-    Array.from(letter).forEach((el) => {
-        // console.log(el);
-        // Check if there is a match with the button that was clicked 
-        if (el === button) {
-            // Store matching letter
-            const matchLetter = el;
-            return matchLetter.classList.add('show');
+    const letters = document.querySelectorAll('.letter');
+    
+    // Loop through collection
+    for (let i = 0; i < letters.length; i++) {
+        
+        // Get the inner text of the li
+        const letterText = letters[i].textContent;
+        console.log(letterText);
+        
+        // Get button the player has chosen
+        const buttonText = event.target.textContent;
+        console.log(buttonText);
+        
+        // If letter in index matches button chosen by player 
+        if (letterText === buttonText) {
+            // Add class of "show" to ALL list items that have the same value. 
+            letters[i].classList.add('show');
         } else {
             return null;
         }
-    }); 
-}
-checkLetter();
+    }
+};
 
 /* Add an event listener to the keyboard */
-qwerty.addEventListener('click', (e) => {
-    const letterChosen = e.target.textContent;
-    const button = e.target;
-    console.log(button);
-    // If letter is chosen, add class of chosen so the same letter can't be added 2x and disable the button.  
-    if (letterChosen.length > 0) {
-        button.classList.add('chosen');
-        button.disabled = true;
-    }
+qwerty.addEventListener('click', e => {
+    const elem = document.querySelector('')
+    
+    
+    
 });
+
+// /* Add an event listener to the keyboard */
+// qwerty.addEventListener('click', e => {
+//     const clickedElement = e.target;
+//     const buttons = document.querySelectorAll('.keyrow button');
+
+//     // Loop through collection of buttons inside the keyrow container
+//     for (let j = 0; j < buttons.length; j++) {
+//         const buttonList = buttons[j];
+
+//         // If we have a button inside the keyrow container, add class of "chosen" when the button is selected. 
+//         if (clickedElement === buttonList) {
+//             console.log(clickedElement);
+//             clickedElement.classList.add('chosen');
+//             clickedElement.disabled = true;
+//         } else {
+//             clickedElement.disabled = false;
+//         }
+//     }  
+//     checkLetter(clickedElement);
+// });
+
+
+
+
+
+
 
