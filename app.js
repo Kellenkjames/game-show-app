@@ -79,32 +79,30 @@ const checkLetter = button => {
 
 /* Add an event listener to the keyboard */
 qwerty.addEventListener('click', e => {
-    const elem = document.querySelector('')
     
+    const letterChosen = e.target.textContent;
+    // console.log(letterChosen);
+    const button = e.target;
+    // console.log(button);
+    const keyrow = document.querySelectorAll('.keyrow');
+    
+    // If clicked element 
+    if (button.closest('.section')) {
+        button.classList.add('chosen');
+        button.disabled = true;
+    }
+    // If clicked element is outside of keyboard, make sure we remove styles of "chosen"
+    for (let i = 0; i < keyrow.length; i++) {
+        if (button === keyrow[i]) {
+            console.log(button)
+            console.log(keyrow[i]);
+            keyrow[i].classList.remove('chosen');
+        }
+        
+    }
     
     
 });
-
-// /* Add an event listener to the keyboard */
-// qwerty.addEventListener('click', e => {
-//     const clickedElement = e.target;
-//     const buttons = document.querySelectorAll('.keyrow button');
-
-//     // Loop through collection of buttons inside the keyrow container
-//     for (let j = 0; j < buttons.length; j++) {
-//         const buttonList = buttons[j];
-
-//         // If we have a button inside the keyrow container, add class of "chosen" when the button is selected. 
-//         if (clickedElement === buttonList) {
-//             console.log(clickedElement);
-//             clickedElement.classList.add('chosen');
-//             clickedElement.disabled = true;
-//         } else {
-//             clickedElement.disabled = false;
-//         }
-//     }  
-//     checkLetter(clickedElement);
-// });
 
 
 
