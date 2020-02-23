@@ -14,23 +14,16 @@ const phrases =
     'The successful warrior is the average man, with laser-like focus'  
 ]
 
-startGame.addEventListener('click', () => {
-    // Hide the start screen overlay 
-    startOverlay.style.display = 'none';
-});
-
+// Return a random phrase from an array
 const getRandomPhraseAsArray = arr => {
     // Randomly choose a phrase from the phrases array 
     return phrases[Math.floor(Math.random() * phrases.length)].toLowerCase().split("");
 }
 
-// Call the function and pass phrases array to it
 getRandomPhraseAsArray(phrases);
-
-// Value returned by getRandomPhraseAsArray
 const phraseArray = getRandomPhraseAsArray(phrases);
 
-// Game Display - Loop through array of characters and add class of letter
+// Adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
     // do stuff any arr that is passed in, and add to `#phrase ul`
     for (let i = 0; i < phraseArray.length; i++) {
@@ -63,10 +56,6 @@ const checkLetter = button => {
         const letterText = letters[i].textContent;
         console.log(letterText);
         
-        // Get button the player has chosen
-        const buttonText = event.target.textContent;
-        console.log(buttonText);
-        
         // If letter in index matches button chosen by player 
         if (letterText === buttonText) {
             // Add class of "show" to ALL list items that have the same value. 
@@ -76,6 +65,12 @@ const checkLetter = button => {
         }
     }
 };
+
+// Listen for the start game button to be pressed
+startGame.addEventListener('click', () => {
+    // Hide the start screen overlay 
+    startOverlay.style.display = 'none';
+});
 
 /* Add an event listener to the keyboard */
 qwerty.addEventListener('click', e => {
@@ -100,13 +95,6 @@ qwerty.addEventListener('click', e => {
         }
         
     }
-    
-    
+    const letterChecked = checkLetter(button);.
+    letterChecked;
 });
-
-
-
-
-
-
-
