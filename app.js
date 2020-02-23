@@ -40,29 +40,33 @@ const addPhraseToDisplay = arr => {
         }
     }
 }
+
 // Pass new split array as argument
-addPhraseToDisplay(phraseArray); 
+const splitArg = addPhraseToDisplay(phraseArray); 
+splitArg;
 
 // Will be used in the event listener to check against button
 const checkLetter = button => {
     
     // Get all of the elements with a class of “letter” 
     const letters = document.querySelectorAll('.letter');
-    
+    let match = null;
+
     // Loop through collection
     for (let i = 0; i < letters.length; i++) {
-        
+
         // Get the inner text of the li
         const letterText = letters[i].textContent;
         console.log(letterText);
-        
+    
         // If letter in index matches button chosen by player 
-        if (letterText === buttonText) {
-            // Add class of "show" to ALL list items that have the same value. 
-            letters[i].classList.add('show');
+        if (letterText) {
+            // Add class of "show" to ALL list items that have the same value and store to match variable. 
+            match = letters[i].classList.add('show');
         } else {
             return null;
         }
+        return match;
     }
 };
 
@@ -80,21 +84,24 @@ qwerty.addEventListener('click', e => {
     const button = e.target;
     // console.log(button);
     const keyrow = document.querySelectorAll('.keyrow');
-    
+
     // If clicked element 
-    if (button.closest('.section')) {
+    if (button) {
         button.classList.add('chosen');
         button.disabled = true;
+        console.log(button);
     }
-    // If clicked element is outside of keyboard, make sure we remove styles of "chosen"
+    
+    // If clicked element is outside of keyboard, make sure we remove styles of "chosen".
     for (let i = 0; i < keyrow.length; i++) {
         if (button === keyrow[i]) {
             console.log(button)
             console.log(keyrow[i]);
             keyrow[i].classList.remove('chosen');
-        }
-        
+            splitArg.classList.remove('chosen');
+        } 
     }
-    const letterChecked = checkLetter(button);.
+
+    const letterChecked = checkLetter(button);
     letterChecked;
 });
