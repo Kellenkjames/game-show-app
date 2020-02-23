@@ -42,8 +42,7 @@ const addPhraseToDisplay = arr => {
 }
 
 // Pass new split array as argument
-const splitArg = addPhraseToDisplay(phraseArray); 
-splitArg;
+addPhraseToDisplay(phraseArray); 
 
 // Will be used in the event listener to check against button
 const checkLetter = button => {
@@ -98,7 +97,6 @@ qwerty.addEventListener('click', e => {
             console.log(button)
             console.log(keyrow[i]);
             keyrow[i].classList.remove('chosen');
-            splitArg.classList.remove('chosen');
         } 
     }
 
