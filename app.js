@@ -14,11 +14,7 @@ const phrases =
     'The successful warrior is the average man, with laser-like focus'  
 ]
 
-startGame.addEventListener('click', () => {
-    // Hide the start screen overlay 
-    startOverlay.style.display = 'none';
-});
-
+// Return a random phrase from the array
 const getRandomPhraseAsArray = arr => {
     // Randomly choose a phrase from the phrases array 
     return phrases[Math.floor(Math.random() * phrases.length)].toLowerCase().split("");
@@ -30,7 +26,7 @@ getRandomPhraseAsArray(phrases);
 // Value returned by getRandomPhraseAsArray
 const phraseArray = getRandomPhraseAsArray(phrases);
 
-// Game Display - Loop through array of characters and add class of letter
+// Adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
     // do stuff any arr that is passed in, and add to `#phrase ul`
     for (let i = 0; i < phraseArray.length; i++) {
@@ -50,44 +46,43 @@ const addPhraseToDisplay = arr => {
 // Pass new split array as argument
 addPhraseToDisplay(phraseArray); 
 
-// Will be used in the event listener to check against button
+// Check if a letter is in the phrase
 const checkLetter = button => {
     
     // Get all of the elements with a class of “letter” 
-    const letters = document.querySelectorAll('.letter');
+    const checkLetter = document.querySelectorAll('.letter');
+    const match = null;
     
     // Loop through collection
-    for (let i = 0; i < letters.length; i++) {
+    for (let i = 0; i < checkLetter.length; i++) {
         
-        // Get the inner text of the li
-        const letterText = letters[i].textContent;
-        console.log(letterText);
+        console.log(checkLetter[i]);
         
-        // Get button the player has chosen
-        const buttonText = event.target.textContent;
-        console.log(buttonText);
-        
-        // If letter in index matches button chosen by player 
-        if (letterText === buttonText) {
+        // Check if they match the letter in the button the player has chosen.
+        if (checkLetter[i].textContent === '') {
             // Add class of "show" to ALL list items that have the same value. 
-            letters[i].classList.add('show');
+            checkLetter[i].classList.add('show');
         } else {
             return null;
         }
     }
 };
 
-/* Add an event listener to the keyboard */
+// Listen for the start game button to be pressed
+startGame.addEventListener('click', () => {
+    // Hide the start screen overlay 
+    startOverlay.style.display = 'none';
+});
+
+// Listen for the onscreen keyboard to be clicked
 qwerty.addEventListener('click', e => {
     
     const letterChosen = e.target.textContent;
-    // console.log(letterChosen);
     const button = e.target;
-    // console.log(button);
     const keyrow = document.querySelectorAll('.keyrow');
     
-    // If clicked element 
-    if (button.closest('.section')) {
+    // If clicked element is our button, add class and disable button
+    if (button.closest('.keyrow')) {
         button.classList.add('chosen');
         button.disabled = true;
     }
@@ -97,11 +92,11 @@ qwerty.addEventListener('click', e => {
             console.log(button)
             console.log(keyrow[i]);
             keyrow[i].classList.remove('chosen');
-        }
-        
-    }
-    
-    
+        }  
+    }  
+    const letterFound = checkLetter(button);
+    // Call function
+    letterFound;  
 });
 
 
