@@ -20,10 +20,7 @@ const getRandomPhraseAsArray = arr => {
     return phrases[Math.floor(Math.random() * phrases.length)].toLowerCase().split("");
 }
 
-// Call the function and pass phrases array to it
 getRandomPhraseAsArray(phrases);
-
-// Value returned by getRandomPhraseAsArray
 const phraseArray = getRandomPhraseAsArray(phrases);
 
 // Adds the letters of a string to the display
@@ -50,19 +47,19 @@ addPhraseToDisplay(phraseArray);
 const checkLetter = button => {
     
     // Get all of the elements with a class of “letter” 
-    const checkLetter = document.querySelectorAll('.letter');
-    const match = null;
+    const letters = document.querySelectorAll('.letter');
+    let match = null;
     
     // Loop through collection
-    for (let i = 0; i < checkLetter.length; i++) {
-        
-        console.log(checkLetter[i]);
+    for (let i = 0; i < letters.length; i++) {
         
         // Check if they match the letter in the button the player has chosen.
-        if (checkLetter[i].textContent === '') {
+        if (letters[i].textContent === letterFound) {
             // Add class of "show" to ALL list items that have the same value. 
-            checkLetter[i].classList.add('show');
-        } else {
+            match = letters[i].classList.add('show');
+            return match;
+        }  
+        else {
             return null;
         }
     }
@@ -77,31 +74,24 @@ startGame.addEventListener('click', () => {
 // Listen for the onscreen keyboard to be clicked
 qwerty.addEventListener('click', e => {
     
-    const letterChosen = e.target.textContent;
-    const button = e.target;
-    const keyrow = document.querySelectorAll('.keyrow');
+    // Our button target
+    const buttonTarget = e.target;
     
-    // If clicked element is our button, add class and disable button
-    if (button.closest('.keyrow')) {
-        button.classList.add('chosen');
-        button.disabled = true;
+    // If the clicked element is not our button, BAIL. 
+    if(!buttonTarget.closest('button')) return;
+    
+    // Otherwise, add class of chosen to button and disabled attribute. 
+    if (buttonTarget.closest('button')) {
+        buttonTarget.classList.add('chosen');
+        buttonTarget.disabled = true;
+    } else {
+        // If button has class of chosen, bail
+        if (buttonTarget.contains('.chosen')) return;
     }
-    // If clicked element is outside of keyboard, make sure we remove styles of "chosen"
-    for (let i = 0; i < keyrow.length; i++) {
-        if (button === keyrow[i]) {
-            console.log(button)
-            console.log(keyrow[i]);
-            keyrow[i].classList.remove('chosen');
-        }  
-    }  
-    const letterFound = checkLetter(button);
-    // Call function
-    letterFound;  
+
+    // Store the letter returned
+    checkLetter(buttonTarget);
+    const letterFound = checkLetter(buttonTarget);
 });
-
-
-
-
-
 
 
