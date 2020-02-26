@@ -2,7 +2,6 @@
 const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('.phrase');
 
-const missed = 0;
 const startGame = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 const phrases = 
@@ -13,6 +12,10 @@ const phrases =
     'Real living is living for others', 
     'The successful warrior is the average man, with laser-like focus'  
 ]
+
+
+let letterFound;
+let missed = 0;
 
 // Return a random phrase from the array
 const getRandomPhraseAsArray = arr => {
@@ -43,24 +46,19 @@ const addPhraseToDisplay = arr => {
 // Pass new split array as argument
 addPhraseToDisplay(phraseArray); 
 
-// Check if a letter is in the phrase
 const checkLetter = button => {
-    
-    // Get all of the elements with a class of “letter” 
+    // Get all of the elements with a class of "letter" 
     const letters = document.querySelectorAll('.letter');
-    let match = null;
+    let match;
     
     // Loop through collection
     for (let i = 0; i < letters.length; i++) {
-        
         // Check if they match the letter in the button the player has chosen.
-        if (letters[i].textContent === letterFound) {
+        if (letters[i].textContent === button) {
             // Add class of "show" to ALL list items that have the same value. 
             match = letters[i].classList.add('show');
-            return match;
-        }  
-        else {
-            return null;
+        } else {
+            match = null;
         }
     }
 };
@@ -74,24 +72,16 @@ startGame.addEventListener('click', () => {
 // Listen for the onscreen keyboard to be clicked
 qwerty.addEventListener('click', e => {
     
-    // Our button target
-    const buttonTarget = e.target;
-    
-    // If the clicked element is not our button, BAIL. 
-    if(!buttonTarget.closest('button')) return;
-    
-    // Otherwise, add class of chosen to button and disabled attribute. 
-    if (buttonTarget.closest('button')) {
-        buttonTarget.classList.add('chosen');
-        buttonTarget.disabled = true;
-    } else {
-        // If button has class of chosen, bail
-        if (buttonTarget.contains('.chosen')) return;
+    // Check if we have a 'button" and do things
+    if (e.target.tagName === 'BUTTON') {
+        const button = e.target;
+        button.classList.add('chosen');
+        button.disabled = true;
+        checkLetter(button.textContent);
     }
 
-    // Store the letter returned
-    checkLetter(buttonTarget);
-    const letterFound = checkLetter(buttonTarget);
+    // 
+
 });
 
 
