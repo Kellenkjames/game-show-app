@@ -15,6 +15,8 @@ const phrases =
 
 
 let letterFound;
+
+// Scoreboard 
 let missed = 0;
 
 // Return a random phrase from the array
@@ -50,17 +52,34 @@ const checkLetter = button => {
     // Get all of the elements with a class of "letter" 
     const letters = document.querySelectorAll('.letter');
     let match;
+    let letterFound;
     
-    // Loop through collection
+    // Get nodeList of tries / hearts
+    const tries = document.querySelectorAll('.tries');
+    
+    // Check if letter chosen match the button that was clicked
     for (let i = 0; i < letters.length; i++) {
         // Check if they match the letter in the button the player has chosen.
         if (letters[i].textContent === button) {
             // Add class of "show" to ALL list items that have the same value. 
             match = letters[i].classList.add('show');
+            // Store the letter returned 
+            letterFound = letters[i].textContent;
+            console.log(letterFound);
         } else {
             match = null;
         }
     }
+    // If CheckLetter function does not find a letter, remove one of the hearts
+    if (!letterFound) {
+        const ol = document.querySelector('ol');
+        const li = document.querySelector('.tries');
+        ol.removeChild(li);
+        missed--;
+    } else {
+        missed++;
+    }
+    
 };
 
 // Listen for the start game button to be pressed
@@ -78,10 +97,7 @@ qwerty.addEventListener('click', e => {
         button.classList.add('chosen');
         button.disabled = true;
         checkLetter(button.textContent);
-    }
-
-    // 
-
+    } 
 });
 
 
