@@ -21,7 +21,6 @@ let missed = 0;
 
 // Title
 let headline = document.querySelector('.title');
-console.log(headline);
 
 // Return a random phrase from the array
 const getRandomPhraseAsArray = arr => {
@@ -102,12 +101,18 @@ const checkWin = () => {
         startOverlay.classList.add('win');
         headline.innerHTML = "You Win 😀";
         startOverlay.style.display = "flex";
+        // Call Function to Reset Game
+        resetGame();
+        
+        
     }
     // Check if the missed counter is greater than 4. If they are, display the lose overlay
     if (missed > 4) {
         startOverlay.classList.add('lose');
         headline.innerHTML = "You Lose... Try again 😉";
         startOverlay.style.display = "flex";
+        // Call Function to Reset Game
+        resetGame();
     }
 
 }
@@ -131,5 +136,51 @@ qwerty.addEventListener('click', e => {
     // Check if the number of letters with class "show" is equal to the number of letters with class "letters"
     checkWin();
 });
+
+// Reset Game
+const resetGame = () => {
+    
+    // Replace Inner Text of Start Button
+    startGame.innerHTML = "Reset Game";
+
+    // Remove class of chosen and attribute of class so we get a proper reset
+    const qwertyButtons = document.querySelectorAll('.keyrow button');
+   
+    for (let i = 0; i < qwertyButtons.length; i++) {
+        qwertyButtons[i].classList.remove('chosen');
+        qwertyButtons[i].removeAttribute('class');
+        qwertyButtons[i].disabled = false;
+    }
+
+    // Generate a new random phrase
+    addPhraseToDisplay(phraseArray); 
+
+    // Reset the number of misses to zero
+    missed = 0;
+    
+    // The Hearts no longer exist because they have been removed.
+    // They have to be created and injected. 
+    for (let i = 0; i < 5; i++) {
+        const ol = document.querySelector('ol');
+        let li = document.createElement("li")
+        let image = document.createElement('img');
+        let imageUrl = "images/liveHeart.png";
+        image.setAttribute("src", imageUrl);
+
+        ol.appendChild(li);
+        li.appendChild(image);
+        
+
+    }
+
+  
+    
+};
+
+
+
+
+
+
 
 
