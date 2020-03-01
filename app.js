@@ -19,6 +19,10 @@ let letterFound;
 // Scoreboard 
 let missed = 0;
 
+// Title
+let headline = document.querySelector('.title');
+console.log(headline);
+
 // Return a random phrase from the array
 const getRandomPhraseAsArray = arr => {
     // Randomly choose a phrase from the phrases array 
@@ -65,7 +69,7 @@ const checkLetter = button => {
             match = letters[i].classList.add('show');
             // Store the letter returned 
             letterFound = letters[i].textContent;
-            console.log(letterFound);
+            // console.log(letterFound);
         } else {
             match = null;
         }
@@ -75,12 +79,38 @@ const checkLetter = button => {
         const ol = document.querySelector('ol');
         const li = document.querySelector('.tries');
         ol.removeChild(li);
-        missed--;
-    } else {
+        // Increment to missed counter
         missed++;
-    }
-    
+    } 
 };
+
+// Check if the game has been won or lost 
+const checkWin = () => {
+
+    // Get all li elements with class of "letter" as NodeList
+    const letters = document.querySelectorAll('.letter');
+    // Convert letters NodeList to an array
+    const lettersArr = Array.from(letters).length;
+
+    // Get all li elements with class of "show" as NodeList
+    const lettersShow = document.querySelectorAll('.show');
+    // Convert letters NodeList to an array
+    const lettersShowArr = Array.from(lettersShow).length;
+
+    // If length of 2 variables are the same - display the "win" overlay. 
+    if (lettersArr === lettersShowArr) {
+        startOverlay.classList.add('win');
+        headline.innerHTML = "You Win!!!";
+        startOverlay.style.display = "flex";
+    }
+    // Check if the missed counter is greater than 4. If they are, display the lose overlay
+    if (missed > 4) {
+        startOverlay.classList.add('lose');
+        headline.innerHTML = "You Lose...Try again";
+        startOverlay.style.display = "flex";
+    }
+
+}
 
 // Listen for the start game button to be pressed
 startGame.addEventListener('click', () => {
@@ -98,6 +128,9 @@ qwerty.addEventListener('click', e => {
         button.disabled = true;
         checkLetter(button.textContent);
     } 
+    // Check if the number of letters with class "show" is equal to the number of letters with class "letters"
+    checkWin();
+    console.log(missed);
 });
 
 
