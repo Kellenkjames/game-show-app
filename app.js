@@ -6,13 +6,12 @@ const startGame = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 const phrases = 
 [ 
-    'If you spend too much time thinking about a thing, you\'ll never get it done', 
+    'If you spend too much time thinking about a thing you wont get it done', 
     'Do not pray for an easy life, pray for the strength to endure a difficult one', 
-    'I fear not the man who has practices 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times', 
+    'I fear not the man who has practices ten thousand kicks', 
     'Real living is living for others', 
-    'The successful warrior is the average man, with laser-like focus'  
+    'The successful warrior is the average man with laser like focus'  
 ]
-
 
 let letterFound;
 
@@ -130,7 +129,6 @@ qwerty.addEventListener('click', e => {
     } 
     // Check if the number of letters with class "show" is equal to the number of letters with class "letters"
     checkWin();
-    console.log(missed);
 });
 
 
