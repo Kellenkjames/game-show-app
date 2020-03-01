@@ -13,6 +13,7 @@ const phrases =
     'The successful warrior is the average man with laser like focus'  
 ]
 
+// Letter to be Returned
 let letterFound;
 
 // Scoreboard 
@@ -99,13 +100,13 @@ const checkWin = () => {
     // If length of 2 variables are the same - display the "win" overlay. 
     if (lettersArr === lettersShowArr) {
         startOverlay.classList.add('win');
-        headline.innerHTML = "You Win!!!";
+        headline.innerHTML = "You Win 😀";
         startOverlay.style.display = "flex";
     }
     // Check if the missed counter is greater than 4. If they are, display the lose overlay
     if (missed > 4) {
         startOverlay.classList.add('lose');
-        headline.innerHTML = "You Lose...Try again";
+        headline.innerHTML = "You Lose... Try again 😉";
         startOverlay.style.display = "flex";
     }
 
