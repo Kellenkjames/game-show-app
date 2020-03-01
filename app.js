@@ -159,21 +159,20 @@ const resetGame = () => {
     missed = 0;
     
     // The Hearts no longer exist because they have been removed.
-    // They have to be created and injected. 
+    // Reset the hearts and inject back into DOM
     for (let i = 0; i < 5; i++) {
         const ol = document.querySelector('ol');
         let li = document.createElement("li")
         let image = document.createElement('img');
+        image.style.height = "35px";
+        image.style.width = "30px";
         let imageUrl = "images/liveHeart.png";
         image.setAttribute("src", imageUrl);
-
+    
         ol.appendChild(li);
         li.appendChild(image);
         
-
     }
-
-  
     
 };
 
