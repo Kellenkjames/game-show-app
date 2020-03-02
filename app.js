@@ -7,7 +7,7 @@ const startOverlay = document.querySelector('#overlay');
 const phrases = 
 [ 
     'If you spend too much time thinking about a thing you wont get it done', 
-    'Do not pray for an easy life, pray for the strength to endure a difficult one', 
+    'Do not pray for an easy life pray for the strength to endure a difficult one', 
     'I fear not the man who has practices ten thousand kicks', 
     'Real living is living for others', 
     'The successful warrior is the average man with laser like focus'  
@@ -37,7 +37,7 @@ const addPhraseToDisplay = arr => {
     for (let i = 0; i < phraseArray.length; i++) {
         if (phraseArray.length > 0) {
             let text = phraseArray[i];
-            const ul = document.getElementById('phrase');
+            const ul = document.querySelector('#phrase ul');
             const li = document.createElement('li');
             li.textContent = text;
             ul.appendChild(li);
@@ -143,26 +143,32 @@ const resetGame = () => {
     // Replace Inner Text of Start Button
     startGame.innerHTML = "Reset Game";
 
-    // Remove class of chosen and attribute of class so we get a proper reset
+    // Generate a new random phrase
+    getRandomPhraseAsArray(phrases);
+
+    // Reset the number of misses to zero
+    missed = 0;
+
+    // Recreate the buttons in the keyboard
     const qwertyButtons = document.querySelectorAll('.keyrow button');
-   
     for (let i = 0; i < qwertyButtons.length; i++) {
         qwertyButtons[i].classList.remove('chosen');
         qwertyButtons[i].removeAttribute('class');
         qwertyButtons[i].disabled = false;
     }
-
-    // Generate a new random phrase
-    addPhraseToDisplay(phraseArray); 
-
-    // Reset the number of misses to zero
-    missed = 0;
     
-    // The Hearts no longer exist because they have been removed.
-    // Reset the hearts and inject back into DOM
+    // Reset the classes added on the li elements for phrase
+    const phraseElements = document.querySelectorAll('#phrase li');
+    for (let j = 0; j < phraseElements.length; j++) {
+        console.log(phraseElements[j]);
+        phraseElements[j].classList.remove('show');
+    }
+    
+    // Recreate the scoreboard
     for (let i = 0; i < 5; i++) {
         const ol = document.querySelector('ol');
-        let li = document.createElement("li")
+        let li = document.createElement("li");
+        li.classList.add('tries');
         let image = document.createElement('img');
         image.style.height = "35px";
         image.style.width = "30px";
@@ -173,7 +179,7 @@ const resetGame = () => {
         li.appendChild(image);
         
     }
-    
+
 };
 
 

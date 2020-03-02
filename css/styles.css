@@ -69,6 +69,10 @@ button {
   padding: 10px;
 }
 
+.tries {
+  padding: 0 1px;
+}
+
 /* Title */
 
 .header {
