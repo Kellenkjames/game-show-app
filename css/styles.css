@@ -126,6 +126,16 @@ button {
   cursor: pointer;
 }
 
+/* Scoreboard */
+
+li:not(.letter) {
+  padding: 1rem;
+}
+
+li.tries {
+  padding: .2rem;
+}
+
 /* Overlay */
 
 #overlay {
@@ -147,6 +157,7 @@ button {
 
 .start {
   background-color: var(--color-start);
+  transition: backgorund-color .5s ease-in-out;
 }
 
 .start a {
@@ -155,6 +166,7 @@ button {
 
 .win {
   background-color: var(--color-win);
+  
 }
 
 .win a {

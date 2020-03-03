@@ -6,11 +6,11 @@ const startGame = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 const phrases = 
 [ 
-    'If you spend too much time thinking about a thing you wont get it done', 
-    'Do not pray for an easy life pray for the strength to endure a difficult one', 
-    'I fear not the man who has practices ten thousand kicks', 
-    'Real living is living for others', 
-    'The successful warrior is the average man with laser like focus'  
+    'a piece of cake', 
+    'back to square one', 
+    'close but no cigar', 
+    'down for the count', 
+    'speak of the devil'  
 ]
 
 // Letter to be Returned
@@ -41,16 +41,18 @@ const addPhraseToDisplay = arr => {
             const li = document.createElement('li');
             li.textContent = text;
             ul.appendChild(li);
+            // is a letter and not a space
             if (phraseArray[i].trim()) {
-                // is a letter and not a space
                 li.classList.add('letter');
-            } 
+            }
+            
         }
     }
 }
-// Pass new split array as argument
+// Call Function and Pass random array as argument 
 addPhraseToDisplay(phraseArray); 
 
+// Check letter chosen against button that was clicked
 const checkLetter = button => {
     // Get all of the elements with a class of "letter" 
     const letters = document.querySelectorAll('.letter');
@@ -85,36 +87,51 @@ const checkLetter = button => {
 
 // Check if the game has been won or lost 
 const checkWin = () => {
-
+    
     // Get all li elements with class of "letter" as NodeList
     const letters = document.querySelectorAll('.letter');
     // Convert letters NodeList to an array
     const lettersArr = Array.from(letters).length;
-
+    
     // Get all li elements with class of "show" as NodeList
     const lettersShow = document.querySelectorAll('.show');
     // Convert letters NodeList to an array
     const lettersShowArr = Array.from(lettersShow).length;
-
+    
     // If length of 2 variables are the same - display the "win" overlay. 
     if (lettersArr === lettersShowArr) {
+        startOverlay.classList.remove('lose');
         startOverlay.classList.add('win');
         headline.innerHTML = "You Win 😀";
         startOverlay.style.display = "flex";
         // Call Function to Reset Game
-        resetGame();
-        
-        
+        resetGame(); 
     }
     // Check if the missed counter is greater than 4. If they are, display the lose overlay
     if (missed > 4) {
+        startOverlay.classList.remove('win');
         startOverlay.classList.add('lose');
         headline.innerHTML = "You Lose... Try again 😉";
         startOverlay.style.display = "flex";
+        // ReCreate the scoreboard
+        for (let i = 0; i < 5; i++) {
+            const ol = document.querySelector('ol');
+            let li = document.createElement("li");
+            li.classList.add('tries');
+            let image = document.createElement('img');
+            image.style.height = "35px";
+            image.style.width = "30px";
+            let imageUrl = "images/liveHeart.png";
+            image.setAttribute("src", imageUrl);
+            
+            ol.appendChild(li);
+            li.appendChild(image);
+            
+        }
         // Call Function to Reset Game
         resetGame();
     }
-
+    
 }
 
 // Listen for the start game button to be pressed
@@ -138,18 +155,12 @@ qwerty.addEventListener('click', e => {
 });
 
 // Reset Game
-const resetGame = () => {
+const resetGame = phraseArray => {
     
     // Replace Inner Text of Start Button
     startGame.innerHTML = "Reset Game";
-
-    // Generate a new random phrase
-    getRandomPhraseAsArray(phrases);
-
-    // Reset the number of misses to zero
-    missed = 0;
-
-    // Recreate the buttons in the keyboard
+    
+    // Reset the buttons in the keyboard
     const qwertyButtons = document.querySelectorAll('.keyrow button');
     for (let i = 0; i < qwertyButtons.length; i++) {
         qwertyButtons[i].classList.remove('chosen');
@@ -157,29 +168,22 @@ const resetGame = () => {
         qwertyButtons[i].disabled = false;
     }
     
-    // Reset the classes added on the li elements for phrase
+    // Reset the classes added on the li elements and empty elements before generating new random
     const phraseElements = document.querySelectorAll('#phrase li');
     for (let j = 0; j < phraseElements.length; j++) {
-        console.log(phraseElements[j]);
-        phraseElements[j].classList.remove('show');
-    }
-    
-    // Recreate the scoreboard
-    for (let i = 0; i < 5; i++) {
-        const ol = document.querySelector('ol');
-        let li = document.createElement("li");
-        li.classList.add('tries');
-        let image = document.createElement('img');
-        image.style.height = "35px";
-        image.style.width = "30px";
-        let imageUrl = "images/liveHeart.png";
-        image.setAttribute("src", imageUrl);
-    
-        ol.appendChild(li);
-        li.appendChild(image);
-        
+        const ul = document.querySelector('#phrase ul');
+        const li = phraseElements[j];
+        li.classList.remove('show');
+        ul.removeChild(li);
     }
 
+    // Generate random phrase and append to DOM
+    newRandomPhrase();
+
+    // Reset the number of misses to zero
+    missed = 0;
+
+    
 };
 
 
