@@ -23,7 +23,7 @@ let missed = 0;
 let headline = document.querySelector('.title');
 
 // Return a random phrase from the array
-const getRandomPhraseAsArray = arr => {
+let getRandomPhraseAsArray = arr => {
     // Randomly choose a phrase from the phrases array 
     return phrases[Math.floor(Math.random() * phrases.length)].toLowerCase().split("");
 }
