@@ -52,6 +52,9 @@ const addPhraseToDisplay = arr => {
 // Call Function and Pass random array as argument 
 addPhraseToDisplay(phraseArray); 
 
+// Store randomPhrase for ResetGame Function;
+let newRandomPhrase = addPhraseToDisplay(phraseArray);
+
 // Check letter chosen against button that was clicked
 const checkLetter = button => {
     // Get all of the elements with a class of "letter" 
@@ -178,7 +181,7 @@ const resetGame = phraseArray => {
     }
 
     // Generate random phrase each time a new game starts 
-    phraseArray = getRandomPhraseAsArray(phrases); 
+    newRandomPhrase = addPhraseToDisplay(phraseArray);
     
     // Reset the number of misses to zero
     missed = 0;    
