@@ -171,10 +171,8 @@ const resetGame = phraseArray => {
     // Reset the classes added on the li elements and empty elements before generating new random
     const phraseElements = document.querySelectorAll('#phrase li');
     for (let j = 0; j < phraseElements.length; j++) {
-        // const ul = document.querySelector('#phrase ul');
         let li = phraseElements[j];
         li.classList.remove('show');
-        // ul.removeChild(li);
     }
 
     // Generate random phrase each time a new game starts 
