@@ -29,7 +29,7 @@ const getRandomPhraseAsArray = arr => {
 }
 
 getRandomPhraseAsArray(phrases);
-const phraseArray = getRandomPhraseAsArray(phrases);
+let phraseArray = getRandomPhraseAsArray(phrases);
 
 // Adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
@@ -181,9 +181,7 @@ const resetGame = phraseArray => {
     addPhraseToDisplay(phraseArray); 
 
     // Reset the number of misses to zero
-    missed = 0;
-
-    
+    missed = 0;    
 };
 
 
