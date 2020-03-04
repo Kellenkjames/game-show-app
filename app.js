@@ -174,11 +174,12 @@ const resetGame = phraseArray => {
         const ul = document.querySelector('#phrase ul');
         const li = phraseElements[j];
         li.classList.remove('show');
+        // Empty elements from ul (start clean)
         ul.removeChild(li);
     }
 
     // Generate random phrase and append to DOM
-    newRandomPhrase();
+    addPhraseToDisplay(phraseArray);
 
     // Reset the number of misses to zero
     missed = 0;
