@@ -29,7 +29,7 @@ const getRandomPhraseAsArray = arr => {
 }
 
 getRandomPhraseAsArray(phrases);
-const phraseArray = getRandomPhraseAsArray(phrases);
+let phraseArray = getRandomPhraseAsArray(phrases);
 
 // Adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
@@ -171,20 +171,15 @@ const resetGame = phraseArray => {
     // Reset the classes added on the li elements and empty elements before generating new random
     const phraseElements = document.querySelectorAll('#phrase li');
     for (let j = 0; j < phraseElements.length; j++) {
-        const ul = document.querySelector('#phrase ul');
-        const li = phraseElements[j];
+        let li = phraseElements[j];
         li.classList.remove('show');
-        // Empty elements from ul (start clean)
-        ul.removeChild(li);
     }
 
-    // Generate random phrase and append to DOM
-    addPhraseToDisplay(phraseArray);
-
-    // Reset the number of misses to zero
-    missed = 0;
-
+    // Generate random phrase each time a new game starts 
+    phraseArray = getRandomPhraseAsArray(phrases);
     
+    // Reset the number of misses to zero
+    missed = 0;    
 };
 
 
