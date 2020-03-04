@@ -28,7 +28,10 @@ const getRandomPhraseAsArray = arr => {
     return phrases[Math.floor(Math.random() * phrases.length)].toLowerCase().split("");
 }
 
+// Generate random phrase
 getRandomPhraseAsArray(phrases);
+
+// Store random phrase in variable (will be used later)
 let phraseArray = getRandomPhraseAsArray(phrases);
 
 // Adds the letters of a string to the display
@@ -155,7 +158,7 @@ qwerty.addEventListener('click', e => {
 });
 
 // Reset Game
-const resetGame = phraseArray => {
+const resetGame = () => {
     
     // Replace Inner Text of Start Button
     startGame.innerHTML = "Reset Game";
@@ -168,14 +171,14 @@ const resetGame = phraseArray => {
         qwertyButtons[i].disabled = false;
     }
     
-    // Reset the classes added on the li elements and empty elements before generating new random
+    // Reset the classes added on the li elements
     const phraseElements = document.querySelectorAll('#phrase li');
     for (let j = 0; j < phraseElements.length; j++) {
         let li = phraseElements[j];
         li.classList.remove('show');
     }
 
-    // Generate random phrase each time a new game starts 
+    // Generate new random phrase
     phraseArray = getRandomPhraseAsArray(phrases);
     
     // Reset the number of misses to zero
