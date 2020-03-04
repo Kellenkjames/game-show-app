@@ -178,7 +178,10 @@ const resetGame = phraseArray => {
     }
 
     // Generate random phrase and append to DOM
-    phraseArray = getRandomisedPhraseAsArray(phrases);
+    let newRandomPhrase = getRandomisedPhraseAsArray(phrases);
+    
+    // Call each time a new game starts 
+    newRandomPhrase();
 
     // Reset the number of misses to zero
     missed = 0;    
