@@ -52,8 +52,6 @@ const addPhraseToDisplay = arr => {
 // Call Function and Pass random array as argument 
 addPhraseToDisplay(phraseArray); 
 
-let randomPhrase = getRandomPhraseAsArray(phrases);
-
 // Check letter chosen against button that was clicked
 const checkLetter = button => {
     // Get all of the elements with a class of "letter" 
@@ -173,14 +171,14 @@ const resetGame = phraseArray => {
     // Reset the classes added on the li elements and empty elements before generating new random
     const phraseElements = document.querySelectorAll('#phrase li');
     for (let j = 0; j < phraseElements.length; j++) {
-        const ul = document.querySelector('#phrase ul');
-        const li = phraseElements[j];
+        // const ul = document.querySelector('#phrase ul');
+        let li = phraseElements[j];
         li.classList.remove('show');
-        ul.removeChild(li);
+        // ul.removeChild(li);
     }
 
     // Generate random phrase each time a new game starts 
-    randomPhrase = addPhraseToDisplay(phraseArray);
+    phraseArray = getRandomPhraseAsArray(phrases);
     
     // Reset the number of misses to zero
     missed = 0;    
