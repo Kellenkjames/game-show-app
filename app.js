@@ -162,7 +162,7 @@ const resetGame = () => {
     
     // Replace Inner Text of Start Button
     startGame.innerHTML = "Reset Game";
-    
+ 
     // Reset the buttons in the keyboard
     const qwertyButtons = document.querySelectorAll('.keyrow button');
     for (let i = 0; i < qwertyButtons.length; i++) {
@@ -172,14 +172,17 @@ const resetGame = () => {
     }
     
     // Reset the classes added on the li elements
-    const phraseElements = document.querySelectorAll('#phrase li');
+    const phraseElements = document.querySelectorAll('#phrase ul');
     for (let j = 0; j < phraseElements.length; j++) {
         let li = phraseElements[j];
-        li.classList.remove('show');
+        phraseElements.removeChild(li);
     }
 
-    // Generate new random phrase
-    phraseArray = getRandomPhraseAsArray(phrases);
+     // Generate new random phrase
+     phraseArray = getRandomPhraseAsArray(phrases);
+
+     // Add phrase to display
+     addPhraseToDisplay(phraseArray);
     
     // Reset the number of misses to zero
     missed = 0;    
