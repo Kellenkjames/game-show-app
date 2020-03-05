@@ -10,7 +10,10 @@ const phrases =
     'back to square one', 
     'close but no cigar', 
     'down for the count', 
-    'speak of the devil'  
+    'speak of the devil',
+    'beating around the bush',
+    'takes two to tango',
+    'actions speak louder than words'  
 ]
 
 // Letter to be Returned
